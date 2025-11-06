@@ -14,10 +14,11 @@ def main():
         player = Player(player_dict)
         players.append(player)
 
-    print("Oliot:")
+    print("Suomalaisten pelaajien tilastot:")
 
     for player in players:
-        print(player)
+        if player.nationality == "FIN":
+            print(player.name, ":", player.goals, "maalia ja", player.assists, "syöttöä")
 
 if __name__ == "__main__":
     main()
