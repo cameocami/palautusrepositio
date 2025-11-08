@@ -1,20 +1,17 @@
-from player import Player
+'''Module defining the PlayerStats class for analyzing NHL player statistics.'''
+
 from player_reader import PlayerReader
 
 class PlayerStats:
+    '''Class for analyzing NHL player statistics with various filtering methods.'''
     def __init__(self, reader:PlayerReader):
         self.reader = reader
 
-    def _filter_by(self, criterion:str, filter_criteria:str):
-        search_criteria = filter_criteria
-        search_criterion = criterion
-        return [player for player in self.reader.players if player.search_criteria == search_criterion]
+    def filter_by_nationality(self, nationality: str):
+        return [player for player in self.reader.players if player.nationality == nationality]
 
     def top_scorers_by_nationality(self, nationality:str ):
 
-        players_of_nationality = [player for player in self.reader.players if player.nationality == nationality]
+        players_of_nationality = self.filter_by_nationality(nationality)
 
-        sorted_players = sorted(players_of_nationality, key=lambda player: player.goals + player.assists, reverse=True)
-
-        return sorted_players
-            
+        return sorted(players_of_nationality, reverse=True)
