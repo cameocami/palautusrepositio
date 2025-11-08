@@ -11,11 +11,8 @@ def main():
     stats = PlayerStats(reader)
     nationalities = reader.get_nationalities()
     nationality = ui.prompt_nationality(nationalities)
-    if nationality == "":
-        players = stats.top_scorers_by_nationality("")
-    else:
-        players = stats.top_scorers_by_nationality(nationality)
-    ui.populate_table(players)
+    players = stats.top_scorers_by_nationality(nationality)
+    ui.populate_table(season, nationality, players)
 
 if __name__ == "__main__":
     main()

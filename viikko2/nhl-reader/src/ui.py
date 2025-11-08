@@ -38,20 +38,28 @@ class UI:
 
     def prompt_nationality(self, nationalities: set):
         '''Prompt the user to enter a nationality.'''
+        input_validity = True
         print("Available nationalities:", "/".join(sorted(nationalities)))
         nationality = input("Enter nationality: ").upper()
+        if len(nationality) != 3:
+            input_validity = False
+        else:
+            if nationality not in nationalities:
+                input_validity = False
+        if input_validity is False:
+            print("Invalid nationality format. Used default nationality FIN.")
+            nationality = "FIN"
         return nationality
 
-    def populate_table(self, players=None):
+    def populate_table(self, season, nationality, players=None):
         '''Populate the table with player statistics.'''
         self.clear()
-
+        self.table = Table(title=f"NHL Player Statistics - {season} ({nationality})")
         self.table.add_column("Name", justify="left", style="cyan", no_wrap=True)
         self.table.add_column("Team", justify="left", style="white")
         self.table.add_column("Goals", justify="right", style="magenta")
         self.table.add_column("Assists", justify="right", style="green")
         self.table.add_column("Points", justify="right", style="yellow")
-        self.table.add_column("Nationality", justify="left", style="blue")
         for player in players:
             self.table.add_row(
                 player.name,
@@ -59,6 +67,5 @@ class UI:
                 str(player.goals),
                 str(player.assists),
                 str(player.points()),
-                player.nationality
             )
         self.display()

@@ -4,7 +4,6 @@ class Player:
     '''Class representing a NHL hockey player with relevant statistics as attributes.'''
     def __init__(self, player_dictionary: dict):
         self.name = player_dictionary['name']
-        self.id = player_dictionary['id']
         self.nationality = player_dictionary['nationality']
         self.goals = player_dictionary['goals']
         self.assists = player_dictionary['assists']
