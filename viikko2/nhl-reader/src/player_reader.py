@@ -9,3 +9,6 @@ class PlayerReader:
             player = Player(player_dict)
             self.players.append(player)
 
+    def get_players(self):
+        return self.players
+
