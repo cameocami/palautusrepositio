@@ -27,11 +27,9 @@ class UI:
         else:
             if season[4] != '-':
                 input_validity = False
-            if season[:4].isdigit() is False:
+            if not (season[:4]+season[5:]).isdigit():
                 input_validity = False
-            if season[5:].isdigit() is False:
-                input_validity = False
-        if input_validity is False:
+        if not input_validity:
             print("Invalid season format. Used default season 2024-25.")
             season = "2024-25"
         return season
