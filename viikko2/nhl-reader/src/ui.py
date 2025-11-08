@@ -1,9 +1,13 @@
+'''UI module for displaying player statistics using Rich library.'''
+
 from rich.table import Table
-from player_reader import PlayerReader
 from rich.console import Console
+
+from player_reader import PlayerReader
 
 
 class UI:
+    '''Class for displaying player statistics in a table format using Rich library.'''
     def __init__(self, player_reader: PlayerReader):
         self.console = Console()
         self.table = Table(title="All Players Stats")
@@ -12,6 +16,13 @@ class UI:
         self.table.add_column("Assists", justify="right", style="green")
         self.table.add_column("Points", justify="right", style="yellow")
         for player in player_reader.players:
-            self.table.add_row(str(player.name), str(player.goals), str(player.assists), str(player.goals + player.assists))
+            pts = player.goals + player.assists
+            self.table.add_row(f'{player.name}', f'{player.goals}', f'{player.assists}', f'{pts}')
 
+    def display(self):
+        '''Display the table in the console.'''
         self.console.print(self.table)
+
+    def clear(self):
+        '''Clear the console.'''
+        self.console.clear()

@@ -9,6 +9,7 @@ def main():
     reader = PlayerReader(url)
     stats = PlayerStats(reader)
     ui = UI(reader)
+    ui.display()
 
 if __name__ == "__main__":
     main()
