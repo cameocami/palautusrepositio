@@ -17,6 +17,12 @@ Login With Incorrect Password
     Click Button  Login
     Login Should Fail With Message  Invalid username or password
 
+Login With Nonexistent User
+    Set Username  maija
+    Set Password  maija123
+    Click Button  Login
+    Login Should Fail With Message  Invalid username or password
+
 *** Keywords ***
 Login Should Succeed
     Main Page Should Be Open
