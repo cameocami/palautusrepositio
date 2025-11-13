@@ -14,7 +14,11 @@ Register With Valid Username And Password
     Register Should Succeed
 
 Register With Too Short Username And Valid Password
-# ...
+    Set Username  om
+    Set Password  omppu123
+    Set Password Confirmation  omppu123
+    Click Button  Register
+    Register Should Fail With Message  Username should have at least 3 characters
 
 Register With Valid Username And Too Short Password
 # ...
