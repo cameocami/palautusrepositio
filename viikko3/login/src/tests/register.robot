@@ -21,7 +21,11 @@ Register With Too Short Username And Valid Password
     Register Should Fail With Message  Username should have at least 3 characters
 
 Register With Valid Username And Too Short Password
-# ...
+    Set Username  omppu
+    Set Password  om
+    Set Password Confirmation  om
+    Click Button  Register
+    Register Should Fail With Message  Password should have at least 8 characters and include numbers or special characters
 
 Register With Valid Username And Invalid Password
 # salasana ei sisällä halutunlaisia merkkejä
