@@ -28,15 +28,25 @@ Register With Valid Username And Too Short Password
     Register Should Fail With Message  Password should have at least 8 characters and include numbers or special characters
 
 Register With Valid Username And Invalid Password
-# salasana ei sisällä halutunlaisia merkkejä
-# ...
+    Set Username  omppu
+    Set Password  omena
+    Set Password Confirmation  omena
+    Click Button  Register
+    Register Should Fail With Message  Password should have at least 8 characters and include numbers or special characters
 
 Register With Nonmatching Password And Password Confirmation
-# ...
+    Set Username  omppu
+    Set Password  omppu123
+    Set Password Confirmation  omena123
+    Click Button  Register
+    Register Should Fail With Message  Password and password confirmation do not match
 
 Register With Username That Is Already In Use
-#
-
+    Set Username  kalle
+    Set Password  omppu123
+    Set Password Confirmation  omppu123
+    Click Button  Register
+    Register Should Fail With Message  Username already exists
 
 *** Keywords ***
 Register Should Succeed
