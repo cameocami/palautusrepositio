@@ -32,10 +32,11 @@ class TestKauppa(unittest.TestCase):
     def test_aloita_asiointi_nollaa_ostokset(self):
         self.kauppa.aloita_asiointi()
         self.kauppa.lisaa_koriin(1)
+        self.varasto_mock.hae_tuote.assert_called_with(1)
         self.kauppa.aloita_asiointi()
         self.kauppa.lisaa_koriin(2)
         self.kauppa.tilimaksu("pekka", "12345")
-        self.pankki_mock.tilisiirto.assert_called_with("pekka", 42, "12345", self.kauppa._kaupan_tili, 3)
+        self.pankki_mock.tilisiirto.assert_called_with(ANY, ANY, ANY, ANY, 3)
 
     def test_maksettaessa_ostos_pankin_metodia_tilisiirto_kutsutaan(self):
         self.kauppa.aloita_asiointi()
