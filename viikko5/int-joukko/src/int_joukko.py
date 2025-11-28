@@ -7,13 +7,10 @@ class IntJoukko:
     def _luo_lista(self, koko):
         return [0] * koko
     
-    def __init__(self, kapasiteetti=None, kasvatuskoko=None):
-        if kapasiteetti is None:
-            self.kapasiteetti = KAPASITEETTI
-        elif not isinstance(kapasiteetti, int) or kapasiteetti < 0:
+    def __init__(self, kapasiteetti=KAPASITEETTI, kasvatuskoko=None):
+        if not isinstance(kapasiteetti, int) or kapasiteetti < 0:
             raise Exception("Väärä kapasiteetti")  # heitin vaan jotain :D
-        else:
-            self.kapasiteetti = kapasiteetti
+        self.kapasiteetti = kapasiteetti
 
         if kasvatuskoko is None:
             self.kasvatuskoko = OLETUSKASVATUS
