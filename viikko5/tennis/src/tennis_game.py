@@ -1,9 +1,9 @@
 class TennisGame:
+    SCORE_NAMES = ["Love", "Fifteen", "Thirty", "Forty"]
     def __init__(self, player1_name: str, player2_name: str) -> None:
         self.player1 = {"name": player1_name, "points": 0}
         self.player2 = {"name": player2_name, "points": 0}
     
-    SCORE_NAMES = ["Love", "Fifteen", "Thirty", "Forty"]
 
     def won_point(self, player_name) -> None:
         if player_name == self.player1["name"]:
