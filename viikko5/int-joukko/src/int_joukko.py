@@ -26,17 +26,12 @@ class IntJoukko:
 
     def lisaa(self, n):
 
-        if self.alkioiden_lkm == 0:
-            self.ljono[0] = n
-            self.alkioiden_lkm = self.alkioiden_lkm + 1
-            return True
-
         if not self.kuuluu(n):
             self.ljono[self.alkioiden_lkm] = n
             self.alkioiden_lkm = self.alkioiden_lkm + 1
 
             # ei mahdu enempää, luodaan uusi säilytyspaikka luvuille
-            if self.alkioiden_lkm % len(self.ljono) == 0:
+            if self.alkioiden_lkm == len(self.ljono):
                 taulukko_old = self.ljono
                 self.kopioi_lista(self.ljono, taulukko_old)
                 self.ljono = self._luo_lista(self.alkioiden_lkm + self.kasvatuskoko)
@@ -93,8 +88,6 @@ class IntJoukko:
         a_taulu = a.to_int_list()
         b_taulu = b.to_int_list()
         return x, a_taulu, b_taulu
-
-
 
     @staticmethod
     def yhdiste(a, b):
