@@ -8,9 +8,20 @@ def main():
     reader = PlayerReader(url)
     stats = Statistics(reader)
 
+
     query = QueryBuilder()
 
-    matcher = query.plays_in("NYR").build()
+    matcher = (
+        query.one_of(
+            query.plays_in("PHI")
+            .has_at_least(10, "assists")
+            .has_fewer_than(10, "goals").build(),
+            query.plays_in("EDM")
+            .has_at_least(50, "points").build(),
+                ).build()
+    )
+
+    print(len(stats.matches(matcher)))
 
     for player in stats.matches(matcher):
         print(player)
