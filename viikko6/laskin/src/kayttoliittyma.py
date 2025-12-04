@@ -17,6 +17,7 @@ class Kayttoliittyma:
             Komento.SUMMA: Summa(sovelluslogiikka),
             Komento.EROTUS: Erotus(sovelluslogiikka),
             Komento.NOLLAUS: Nollaus(sovelluslogiikka),
+            Komento.KUMOA: None
         }
 
     def kaynnista(self):
@@ -68,6 +69,10 @@ class Kayttoliittyma:
 
         if komento_olio:
             komento_olio.suorita(arvo)
+            self._kumoa_painike["state"] = constants.NORMAL
+        else:
+            self._sovelluslogiikka.kumoa()
+            self._kumoa_painike["state"] = constants.DISABLED
 
     def _suorita_komento(self, komento):
         arvo = 0
@@ -78,8 +83,6 @@ class Kayttoliittyma:
             pass
         
         self._hae_komento(komento, arvo)
-
-        self._kumoa_painike["state"] = constants.NORMAL
 
         if self._sovelluslogiikka.arvo() == 0:
             self._nollaus_painike["state"] = constants.DISABLED
