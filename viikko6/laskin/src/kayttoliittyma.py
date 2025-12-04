@@ -72,7 +72,9 @@ class Kayttoliittyma:
             self._kumoa_painike["state"] = constants.NORMAL
         else:
             self._sovelluslogiikka.kumoa()
-            self._kumoa_painike["state"] = constants.DISABLED
+            if self._sovelluslogiikka.kaikki_kumottu:
+                self._kumoa_painike["state"] = constants.DISABLED
+
 
     def _suorita_komento(self, komento):
         arvo = 0
