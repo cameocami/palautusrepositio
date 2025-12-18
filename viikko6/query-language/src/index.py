@@ -15,14 +15,11 @@ def main():
         query.one_of(
             query.plays_in("PHI")
             .has_at_least(10, "assists")
-            .has_fewer_than(10, "goals").build(),
+            .has_fewer_than(10, "goals"),
             query.plays_in("EDM")
-            .has_at_least(50, "points").build(),
+            .has_at_least(50, "points"),
                 ).build()
     )
-
-    print(len(stats.matches(matcher)))
-
     for player in stats.matches(matcher):
         print(player)
 

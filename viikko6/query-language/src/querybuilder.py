@@ -19,7 +19,8 @@ class QueryBuilder:
         matcher = QueryBuilder(And(self._matcher, HasFewerThan(value, attr)))
         return matcher
     
-    def one_of(self, *matchers):
+    def one_of(self, *builders):
+        matchers = [builder.build() for builder in builders]
         matcher = QueryBuilder(And(self._matcher, Or(*matchers)))
         return matcher
-    
+
