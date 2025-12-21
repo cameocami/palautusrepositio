@@ -2,8 +2,8 @@ from kps import KiviPaperiSakset
 
 
 class KPSTekoaly(KiviPaperiSakset):
-    def __init__(self, tekoaly):
-        self._tekoaly = tekoaly
+    def __init__(self, tuomari, tekoaly):
+        super().__init__(tuomari, tekoaly)
 
     def _toisen_siirto(self, ensimmaisen_siirto):
         tokan_siirto = self._tekoaly.anna_siirto()
