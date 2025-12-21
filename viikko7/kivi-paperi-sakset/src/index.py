@@ -1,8 +1,7 @@
-from ui import UI
+from web_app import app
 
 def main():
-    ui = UI()
-    ui.nayta()
+    app.run(debug=True, port=5000)
 
 
 if __name__ == "__main__":

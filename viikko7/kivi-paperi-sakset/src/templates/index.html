@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kivi-Paperi-Sakset</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+        
+        .emoji {
+            font-size: 4em;
+            margin: 20px 0;
+        }
+        
+        p {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+        
+        .game-options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .game-option {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 20px;
+            border-radius: 12px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .game-option:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+        
+        .game-option:active {
+            transform: translateY(-1px);
+        }
+        
+        .option-title {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .option-desc {
+            font-size: 0.85em;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎮 Kivi-Paperi-Sakset</h1>
+        <div class="emoji">✊ 📄 ✂️</div>
+        <p>Valitse pelityyppi aloittaaksesi</p>
+        
+        <form method="POST" action="/start" class="game-options">
+            <button type="submit" name="pelityyppi" value="pelaaja" class="game-option">
+                <span class="option-title">👥 Pelaaja vs Pelaaja</span>
+                <span class="option-desc">Pelaa kaverin kanssa</span>
+            </button>
+            
+            <button type="submit" name="pelityyppi" value="tekoaly" class="game-option">
+                <span class="option-title">🤖 Pelaaja vs Tekoäly</span>
+                <span class="option-desc">Pelaa tietokonetta vastaan</span>
+            </button>
+            
+            <button type="submit" name="pelityyppi" value="parannettu" class="game-option">
+                <span class="option-title">🧠 Pelaaja vs Parannettu Tekoäly</span>
+                <span class="option-desc">Haasta älykkäämpi vastustaja</span>
+            </button>
+        </form>
+    </div>
+</body>
+</html>
