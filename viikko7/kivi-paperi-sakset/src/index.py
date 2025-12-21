@@ -6,7 +6,13 @@ from tuomari import Tuomari
 
 
 def main():
+    komennot = {
+    "a": KPSPelaajaVsPelaaja(Tuomari()),
+    "b": KPSTekoaly(Tuomari(), Tekoaly()),
+    "c": KPSTekoaly(Tuomari(), TekoalyParannettu(10))
+    }
     while True:
+
         print("Valitse pelataanko"
               "\n (a) Ihmistä vastaan"
               "\n (b) Tekoälyä vastaan"
@@ -15,18 +21,11 @@ def main():
               )
 
         vastaus = input()
-        print(
-                "Peli loppuu kun pelaaja antaa virheellisen siirron eli jonkun muun kuin k, p tai s"
-            )
-        if vastaus.endswith("a"):
-            kaksinpeli = KPSPelaajaVsPelaaja(Tuomari())
-            kaksinpeli.pelaa()
-        elif vastaus.endswith("b"):
-            yksinpeli = KPSTekoaly(Tuomari(), Tekoaly())
-            yksinpeli.pelaa()
-        elif vastaus.endswith("c"):
-            haastava_yksinpeli = KPSTekoaly(Tuomari(), TekoalyParannettu(10))
-            haastava_yksinpeli.pelaa()
+
+        print("Peli loppuu kun pelaaja antaa virheellisen siirron eli jonkun muun kuin k, p tai s")
+        if vastaus in komennot:
+            peli = komennot[vastaus]
+            peli.pelaa()
         else:
             break
 
