@@ -13,12 +13,12 @@ class KiviPaperiSakset:
 
             ekan_siirto = self._ensimmaisen_siirto()
             tokan_siirto = self._toisen_siirto(ekan_siirto)
-
+        print("Kiitos!")
+        print(self._tuomari)
         self._tuomari.nollaa()
         if self._tekoaly:
             self._tekoaly.nollaa()
-        print("Kiitos!")
-        print(self._tuomari)
+
 
     def _ensimmaisen_siirto(self):
         return input("Ensimmäisen pelaajan siirto: ")
