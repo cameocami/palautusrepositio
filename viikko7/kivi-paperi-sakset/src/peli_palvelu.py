@@ -70,12 +70,12 @@ class PeliPalvelu:
         
         Args:
             ekan_siirto: Ensimmäisen pelaajan siirto
-            tokan_siirto: Toisen pelaajan siirto (valinnainen, AI:n tapauksessa)
+            tokan_siirto: Toisen pelaajan siirto (valinnainen, tekoälyn tapauksessa)
         
         Returns:
             tuple: (tulos, tokan_siirto) - kierroksen tulos ja toisen pelaajan siirto
         """
-        # Jos toista siirtoa ei annettu, hae se AI:lta
+        # Jos toista siirtoa ei annettu, hae se tekoälyltä
         if tokan_siirto is None:
             tokan_siirto = self.hae_vastustajan_siirto(ekan_siirto)
         
@@ -100,20 +100,20 @@ class PeliPalvelu:
         return {}
     
     def onko_peli_paattynyt(self):
-        """Tarkistaa, onko peli päättynyt (joku on saanut 5 voittoa)"""
+        """Tarkistaa, onko peli päättynyt (joku on saanut 3 voittoa)"""
         if not self.tuomari:
             return False
         kirjanpito = self.tuomari.hae_kirjanpito()
-        return kirjanpito.get('ekan_voitto', 0) >= 5 or kirjanpito.get('tokan_voitto', 0) >= 5
+        return kirjanpito.get('ekan_voitto', 0) >= 3 or kirjanpito.get('tokan_voitto', 0) >= 3
     
     def hae_voittaja(self):
         """Palauttaa voittajan numeron (1 tai 2), tai None jos peli ei ole ohi"""
         if not self.onko_peli_paattynyt():
             return None
         kirjanpito = self.tuomari.hae_kirjanpito()
-        if kirjanpito.get('ekan_voitto', 0) >= 5:
+        if kirjanpito.get('ekan_voitto', 0) >= 3:
             return 1
-        if kirjanpito.get('tokan_voitto', 0) >= 5:
+        if kirjanpito.get('tokan_voitto', 0) >= 3:
             return 2
         return None
     

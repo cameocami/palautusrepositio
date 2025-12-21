@@ -7,6 +7,13 @@ from kps_tekoaly import KPSTekoaly
 from tuomari import Tuomari
 
 
+# Apufunktiot toisteisuuden vähentämiseksi
+def pelaa_useita_kierroksia(peli_palvelu, maara, siirto1='k', siirto2='s'):
+    """Pelaa useita kierroksia"""
+    for _ in range(maara):
+        peli_palvelu.pelaa_kierros(siirto1, siirto2)
+
+
 class TestPeliTehdas:
     """Tests for PeliTehdas factory class"""
     
@@ -218,27 +225,21 @@ class TestOnkoPeliPaattynyt:
         assert peli_palvelu.onko_peli_paattynyt() is False
     
     def test_onko_peli_paattynyt_false_with_few_wins(self, peli_palvelu):
-        """Should return False when no one has 5 wins"""
+        """Should return False when no one has 3 wins"""
         peli_palvelu.alusta_peli('pelaaja')
-        for i in range(4):
-            peli_palvelu.pelaa_kierros('k', 's')  # eka wins
-        
+        pelaa_useita_kierroksia(peli_palvelu, 2)
         assert peli_palvelu.onko_peli_paattynyt() is False
     
     def test_onko_peli_paattynyt_true_eka_wins(self, peli_palvelu):
-        """Should return True when first player gets 5 wins"""
+        """Should return True when first player gets 3 wins"""
         peli_palvelu.alusta_peli('pelaaja')
-        for i in range(5):
-            peli_palvelu.pelaa_kierros('k', 's')  # eka wins
-        
+        pelaa_useita_kierroksia(peli_palvelu, 3)
         assert peli_palvelu.onko_peli_paattynyt() is True
     
     def test_onko_peli_paattynyt_true_toka_wins(self, peli_palvelu):
-        """Should return True when second player gets 5 wins"""
+        """Should return True when second player gets 3 wins"""
         peli_palvelu.alusta_peli('pelaaja')
-        for i in range(5):
-            peli_palvelu.pelaa_kierros('s', 'k')  # toka wins
-        
+        pelaa_useita_kierroksia(peli_palvelu, 3, 's', 'k')
         assert peli_palvelu.onko_peli_paattynyt() is True
 
 
@@ -248,38 +249,29 @@ class TestHaeVoittaja:
     def test_hae_voittaja_returns_none_when_not_over(self, peli_palvelu):
         """Should return None if game not over"""
         peli_palvelu.alusta_peli('pelaaja')
-        for i in range(3):
-            peli_palvelu.pelaa_kierros('k', 's')
-        
+        pelaa_useita_kierroksia(peli_palvelu, 2)
         assert peli_palvelu.hae_voittaja() is None
     
     def test_hae_voittaja_returns_1_when_eka_wins(self, peli_palvelu):
         """Should return 1 when first player wins"""
         peli_palvelu.alusta_peli('pelaaja')
-        for i in range(5):
-            peli_palvelu.pelaa_kierros('k', 's')
-        
+        pelaa_useita_kierroksia(peli_palvelu, 3)
         assert peli_palvelu.hae_voittaja() == 1
     
     def test_hae_voittaja_returns_2_when_toka_wins(self, peli_palvelu):
         """Should return 2 when second player wins"""
         peli_palvelu.alusta_peli('pelaaja')
-        for i in range(5):
-            peli_palvelu.pelaa_kierros('s', 'k')
-        
+        pelaa_useita_kierroksia(peli_palvelu, 3, 's', 'k')
         assert peli_palvelu.hae_voittaja() == 2
     
     def test_hae_voittaja_without_game(self, peli_palvelu):
         """Should return None if no game initialized"""
         assert peli_palvelu.hae_voittaja() is None
     
-    def test_hae_voittaja_with_more_than_5_wins(self, peli_palvelu):
-        """Should return correct winner even with more than 5 wins"""
+    def test_hae_voittaja_with_more_than_3_wins(self, peli_palvelu):
+        """Should return correct winner even with more than 3 wins"""
         peli_palvelu.alusta_peli('pelaaja')
-        for i in range(7):
-            peli_palvelu.pelaa_kierros('k', 's')
-        
-        # Game should have stopped at 5, but test that winner is correct
+        pelaa_useita_kierroksia(peli_palvelu, 5)
         assert peli_palvelu.hae_voittaja() == 1
 
 
