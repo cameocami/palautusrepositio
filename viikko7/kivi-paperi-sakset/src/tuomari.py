@@ -1,6 +1,6 @@
 
 # Luokka pitää kirjaa ensimmäisen ja toisen pelaajan pisteistä sekä tasapelien määrästä.
-EKA_VOITTAA = [("k", "s"), ("s", "p"), ("p", "k")]
+
 
 
 class Tuomari:
@@ -20,7 +20,8 @@ class Tuomari:
     def _tulos(self, eka, toka):
         if eka == toka:
             return 0
-        if (eka, toka) in EKA_VOITTAA:
+        eka_voittaa = [("k", "s"), ("s", "p"), ("p", "k")]
+        if (eka, toka) in eka_voittaa:
             return 1
         return 2
     
