@@ -4,8 +4,7 @@ class Tekoaly:
 
     def anna_siirto(self):
         siirrot = {0: "k", 1: "p", 2: "s"}
-        self._siirto = self._siirto + 1
-        self._siirto = self._siirto % 3
+        self._siirto = (self._siirto + 1) % 3
 
         return siirrot[self._siirto]
 
