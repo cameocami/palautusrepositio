@@ -1,4 +1,3 @@
-from tuomari import Tuomari
 from kps import KiviPaperiSakset
 
 class KPSPelaajaVsPelaaja(KiviPaperiSakset):

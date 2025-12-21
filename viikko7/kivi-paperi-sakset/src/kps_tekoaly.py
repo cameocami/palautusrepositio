@@ -1,11 +1,9 @@
-
-from tekoaly import Tekoaly
 from kps import KiviPaperiSakset
 
 
 class KPSTekoaly(KiviPaperiSakset):
-    def __init__(self):
-        self._tekoaly = Tekoaly()
+    def __init__(self, tekoaly):
+        self._tekoaly = tekoaly
 
     def _toisen_siirto(self, ensimmaisen_siirto):
         tokan_siirto = self._tekoaly.anna_siirto()
