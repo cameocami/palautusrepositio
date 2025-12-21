@@ -8,8 +8,11 @@ class KiviPaperiSakset:
         tokan_siirto = self._toisen_siirto(ekan_siirto)
 
         while self._onko_ok_siirto(ekan_siirto) and self._onko_ok_siirto(tokan_siirto):
-            # ...
-            pass
+            tuomari.kirjaa_siirto(ekan_siirto, tokan_siirto)
+            print(tuomari)
+
+            ekan_siirto = self._ensimmaisen_siirto()
+            tokan_siirto = self._toisen_siirto(ekan_siirto)
 
         print("Kiitos!")
         print(tuomari)
