@@ -5,11 +5,11 @@ from tekoaly_parannettu import TekoalyParannettu
 from tuomari import Tuomari
 
 
-def main():
+def main(tuomari=Tuomari(), tekoaly=Tekoaly(), tekoaly_parannettu=TekoalyParannettu(10)):
     komennot = {
-    "a": KPSPelaajaVsPelaaja(Tuomari()),
-    "b": KPSTekoaly(Tuomari(), Tekoaly()),
-    "c": KPSTekoaly(Tuomari(), TekoalyParannettu(10))
+    "a": KPSPelaajaVsPelaaja(tuomari),
+    "b": KPSTekoaly(tuomari, tekoaly),
+    "c": KPSTekoaly(tuomari, tekoaly_parannettu)
     }
     while True:
 
