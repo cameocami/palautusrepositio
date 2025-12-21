@@ -7,10 +7,12 @@ from tuomari import Tuomari
 
 class UI():
     def __init__(self):
+        self._tuomari = Tuomari()
+
         self._pelit = {
-            "a": lambda: KPSPelaajaVsPelaaja(Tuomari()),
-            "b": lambda: KPSTekoaly(Tuomari(), Tekoaly()),
-            "c": lambda: KPSTekoaly(Tuomari(), TekoalyParannettu(10))
+            "a": lambda: KPSPelaajaVsPelaaja(self._tuomari),
+            "b": lambda: KPSTekoaly(self._tuomari, Tekoaly()),
+            "c": lambda: KPSTekoaly(self._tuomari, TekoalyParannettu(10))
             }
     def nayta(self):
         while True:
@@ -20,6 +22,7 @@ class UI():
             if vastaus in self._pelit:
                 peli = self._pelit[vastaus]()
                 peli.pelaa()
+                self._tuomari.nollaa()
             else:
                 break
 
