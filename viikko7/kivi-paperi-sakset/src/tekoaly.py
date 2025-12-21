@@ -9,7 +9,6 @@ class Tekoaly:
         return siirrot[self._siirto]
 
     def aseta_siirto(self, siirto):
-        # ei tehdä mitään
         pass
 
     def nollaa(self):
