@@ -14,6 +14,9 @@ class KiviPaperiSakset:
             ekan_siirto = self._ensimmaisen_siirto()
             tokan_siirto = self._toisen_siirto(ekan_siirto)
 
+        self._tuomari.nollaa()
+        if self._tekoaly:
+            self._tekoaly.nollaa()
         print("Kiitos!")
         print(self._tuomari)
 

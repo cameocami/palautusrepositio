@@ -11,3 +11,6 @@ class Tekoaly:
     def aseta_siirto(self, siirto):
         # ei tehdä mitään
         pass
+
+    def nollaa(self):
+        self._siirto = 0

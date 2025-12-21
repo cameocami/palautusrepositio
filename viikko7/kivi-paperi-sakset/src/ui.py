@@ -8,11 +8,13 @@ from tuomari import Tuomari
 class UI():
     def __init__(self):
         self._tuomari = Tuomari()
+        self._tekoaly = Tekoaly()
+        self._parempi_tekoaly = TekoalyParannettu(10)
 
         self._pelit = {
-            "a": lambda: KPSPelaajaVsPelaaja(self._tuomari),
-            "b": lambda: KPSTekoaly(self._tuomari, Tekoaly()),
-            "c": lambda: KPSTekoaly(self._tuomari, TekoalyParannettu(10))
+            "a": KPSPelaajaVsPelaaja(self._tuomari),
+            "b": KPSTekoaly(self._tuomari, self._tekoaly),
+            "c": KPSTekoaly(self._tuomari, self._parempi_tekoaly)
             }
     def nayta(self):
         while True:
@@ -20,9 +22,8 @@ class UI():
             vastaus = input()
             print("Peli loppuu kun pelaaja antaa virheellisen siirron eli jonkun muun kuin k, p tai s")
             if vastaus in self._pelit:
-                peli = self._pelit[vastaus]()
+                peli = self._pelit[vastaus]
                 peli.pelaa()
-                self._tuomari.nollaa()
             else:
                 break
 

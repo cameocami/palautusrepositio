@@ -45,3 +45,7 @@ class TekoalyParannettu:
         yleisin = max(maarat, key=maarat.get)
 
         return yleisin
+
+    def nollaa(self):
+        self._muisti = [None] * len(self._muisti)
+        self._vapaa_muisti_indeksi = 0
