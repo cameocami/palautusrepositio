@@ -17,7 +17,7 @@ class TekoalyParannettu:
         self._vapaa_muisti_indeksi = self._vapaa_muisti_indeksi + 1
 
     def anna_siirto(self):
-        if self._vapaa_muisti_indeksi == 0 or self._vapaa_muisti_indeksi == 1:
+        if self._vapaa_muisti_indeksi < 2:
             return "k"
 
         viimeisin_siirto = self._muisti[self._vapaa_muisti_indeksi - 1]
