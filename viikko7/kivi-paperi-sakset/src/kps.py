@@ -25,4 +25,4 @@ class KiviPaperiSakset:
         raise Exception("Tämä metodi pitää korvata aliluokassa")
 
     def _onko_ok_siirto(self, siirto):
-        return siirto == "k" or siirto == "p" or siirto == "s"
+        return siirto in ["k", "p", "s"]
