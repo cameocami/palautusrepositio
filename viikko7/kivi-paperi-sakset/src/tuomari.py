@@ -5,29 +5,24 @@ EKA_VOITTAA = [("k", "s"), ("s", "p"), ("p", "k")]
 
 class Tuomari:
     def __init__(self):
+        self._tasapelit = 0
         self._ekan_pisteet = 0
         self._tokan_pisteet = 0
-        self._tasapelit = 0
+        self._kirjaukset = [self._tasapelit, self._ekan_pisteet, self._tokan_pisteet]
  
     def kirjaa_siirto(self, ekan_siirto, tokan_siirto):
         tulos = self._tulos(ekan_siirto, tokan_siirto)
-
-        if tulos == "tasapeli":
-            self._tasapelit = self._tasapelit + 1
-        elif tulos == "eka_voittaa":
-            self._ekan_pisteet = self._ekan_pisteet + 1
-        else:
-            self._tokan_pisteet = self._tokan_pisteet + 1
+        self._kirjaukset[tulos] = self._kirjaukset[tulos] + 1
 
     def __str__(self):
         return f"Pelitilanne: {self._ekan_pisteet} - {self._tokan_pisteet}\nTasapelit: {self._tasapelit}"
 
     def _tulos(self, eka, toka):
         if eka == toka:
-            return "tasapeli"
+            return 0
         if (eka, toka) in EKA_VOITTAA:
-            return "eka_voittaa"
-        return "toka_voittaa"
+            return 1
+        return 2
     
     def nollaa(self):
         self._ekan_pisteet = 0
