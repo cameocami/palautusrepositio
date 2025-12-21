@@ -3,7 +3,6 @@ class TekoalyParannettu:
     def __init__(self, muistin_koko):
         self._muisti = [None] * muistin_koko
         self._vapaa_muisti_indeksi = 0
-        self._voittotaulukko = { "k": "p", "p": "s", "s": "k" } # kivi -> paperi, paperi -> sakset, sakset -> kivi
 
     def aseta_siirto(self, siirto):
         # jos muisti täyttyy, unohdetaan viimeinen alkio
@@ -24,15 +23,9 @@ class TekoalyParannettu:
 
         yleisin = self._laske_yleisin_seuraava_siirto(viimeisin_siirto)
 
-        # Tehdään siirron valinta esimerkiksi seuraavasti;
-        # - jos kiviä eniten, annetaan aina paperi
-        # - jos papereita eniten, annetaan aina sakset
-        # muulloin annetaan aina kivi
+        siirto = self._vastaa_siirtoon(yleisin)
 
-        return self._voittotaulukko[yleisin]
-
-        # Tehokkaampiakin tapoja löytyy, mutta niistä lisää
-        # Johdatus Tekoälyyn kurssilla!
+        return siirto
 
     def _laske_yleisin_seuraava_siirto(self, siirto):
         maarat = {"k": 0, "p": 0, "s": 0}
@@ -45,6 +38,11 @@ class TekoalyParannettu:
         yleisin = max(maarat, key=maarat.get)
 
         return yleisin
+    
+    def _vastaa_siirtoon(self, siirto):
+        voittotaulukko = { "k": "p", "p": "s", "s": "k" } # kivi -> paperi, paperi -> sakset, sakset -> kivi
+        return voittotaulukko[siirto]
+
 
     def nollaa(self):
         self._muisti = [None] * len(self._muisti)
