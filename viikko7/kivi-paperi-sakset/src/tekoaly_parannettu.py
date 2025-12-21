@@ -22,20 +22,26 @@ class TekoalyParannettu:
 
         viimeisin_siirto = self._muisti[self._vapaa_muisti_indeksi - 1]
 
-        maarat = {"k": 0, "p": 0, "s": 0}
-
-        for i in range(0, self._vapaa_muisti_indeksi - 1):
-            if viimeisin_siirto == self._muisti[i]:
-                seuraava = self._muisti[i + 1]
-                maarat[seuraava] += 1
+        yleisin = self._laske_yleisin_seuraava_siirto(viimeisin_siirto)
 
         # Tehdään siirron valinta esimerkiksi seuraavasti;
         # - jos kiviä eniten, annetaan aina paperi
         # - jos papereita eniten, annetaan aina sakset
         # muulloin annetaan aina kivi
-        yleisin = max(maarat, key=maarat.get)
 
         return self._voittotaulukko[yleisin]
 
         # Tehokkaampiakin tapoja löytyy, mutta niistä lisää
         # Johdatus Tekoälyyn kurssilla!
+
+    def _laske_yleisin_seuraava_siirto(self, siirto):
+        maarat = {"k": 0, "p": 0, "s": 0}
+
+        for i in range(0, self._vapaa_muisti_indeksi - 1):
+            if siirto == self._muisti[i]:
+                seuraava = self._muisti[i + 1]
+                maarat[seuraava] += 1
+
+        yleisin = max(maarat, key=maarat.get)
+
+        return yleisin
